@@ -3,16 +3,30 @@ package main
 import (
   "fmt"
   "net/http"
-	// "html/template"
+	"log"
+	"html/template"
 )
 
 func main() {
-	fmt.Println("Hello")
+	fmt.Println("Starting server...")
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, "Hello, World!")
-	})
+	// define callbacks
+	http.HandleFunc("/", indexHandler)
 
-	fmt.Println("Server running at http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	// then listen and serve
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatalf("Error starting server: %v", err)
+	}
+}
+
+// See https://pkg.go.dev/net/http#example-HandleFunc for examples
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("index.html")
+	if err != nil {
+		http.Error(w, "Unable to load index.html", http.StatusInternalServerError)
+		return
+	}
+
+	tmpl.Execute(w, nil)
 }
