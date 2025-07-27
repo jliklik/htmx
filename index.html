@@ -16,8 +16,15 @@
 	</style>
 </head>
 <body>
-	<div class="flex justify-center items-center bg-cover bg-center h-64" style="background-image: url('/static/bike_shop.jpg');">
-		<p class="bg-orange-200 bg-opacity-50 font-permanent-marker text-orange-500 text-5xl drop-shadow-xl/25">South Vancouver Bike Shop</p>
+	<div class="flex w-full justify-center items-center bg-cover bg-center h-20">
+		<img src='/static/bike_shop.jpg' class="h-full w-[85%] object-cover">
+		<div class="flex flex-row w-[15%] bg-slate-800 h-full">
+			<div class="relative h-full flex items-center justify-center w-20 overflow-visible bg-white">
+				<!-- <div class="absolute inset-0 scale-150 w-full h-full bg-[radial-gradient(circle,rgba(245,73,39,1.0)_0%,transparent_100%)] blur-xl"></div> -->
+		    	<img src='/static/sunset.drawio.png' class="relative z-10 max-h-[100%] max-w-[100%]">
+			</div>
+			<div class="font-permanent-marker text-white text-3xl">Sunset bike rentals</div>
+		</div>
 	</div>
 	<div class="flex flex-row bg-slate-500">
 		<div class="border-2 border-white bg-orange-500 mx-2 w-48">Home</div>
