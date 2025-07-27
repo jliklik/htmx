@@ -10,6 +10,9 @@ import (
 func main() {
 	fmt.Println("Starting server...")
 
+	fs := http.FileServer(http.Dir("assets"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	// define callbacks
 	http.HandleFunc("/", indexHandler)
 

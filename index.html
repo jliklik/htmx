@@ -3,10 +3,27 @@
 <head>
   <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
 	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<style>
+		.font-permanent-marker {
+			font-family: "Permanent Marker"
+		}
+		.text-outline {
+			-webkit-text-stroke: 1px white;
+		}
+	</style>
 </head>
 <body>
-	<div class="bg-gray-100 font-sans p-8">
-  	Hello world!
+	<div class="flex justify-center items-center bg-cover bg-center h-64" style="background-image: url('/static/bike_shop.jpg');">
+		<p class="bg-orange-200 bg-opacity-50 font-permanent-marker text-orange-500 text-5xl drop-shadow-xl/25">South Vancouver Bike Shop</p>
+	</div>
+	<div class="flex flex-row bg-slate-500">
+		<div class="border-2 border-white bg-orange-500 mx-2 w-48">Home</div>
+		<div class="border-2 border-white bg-orange-500 mx-2 w-48">Brands</div>
+		<div class="border-2 border-white bg-orange-500 mx-2 w-48">Service & Rates</div>
+		<div class="border-2 border-white bg-orange-500 mx-2 w-48">Book a Service</div>
+		<div class="border-2 border-white bg-orange-500 mx-2 w-48">Reviews</div>
 	</div>
 </body>
-
