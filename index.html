@@ -21,10 +21,13 @@
   	<img src='/static/sunset3.drawio.png' class="w-[5%] object-cover">
 	</div>
 	<div class="flex flex-row bg-slate-800">
-		<div class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Home</div>
-		<div class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Brands</div>
-		<div class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Service & Rates</div>
-		<div class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Book a Service</div>
-		<div class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Reviews</div>
+		<div hx-get="/home-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Home</div>
+		<div hx-get="/brand-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Brands</div>
+		<div hx-get="/service-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Service & Rates</div>
+		<div hx-get="/booking-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Book a Service</div>
+		<div hx-get="/review-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Reviews</div>
 	</div>
 </body>
+<div id="content">
+	<p>Home page</p>
+</div>
