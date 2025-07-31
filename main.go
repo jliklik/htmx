@@ -18,6 +18,9 @@ func main() {
 
 	http.HandleFunc("/home-content", homeHandler)
 	http.HandleFunc("/brand-content", brandHandler)
+	http.HandleFunc("/service-content", serviceHandler)
+	http.HandleFunc("/booking-content", bookingHandler)
+	http.HandleFunc("/review-content", reviewHandler)
 
 	// then listen and serve
 	err := http.ListenAndServe(":8080", nil)
@@ -27,7 +30,7 @@ func main() {
 }
 
 // See https://pkg.go.dev/net/http#example-HandleFunc for examples
-func indexHandler(w htp.ResponseWriter, r *http.Request) {
+func indexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("index.html")
 	if err != nil {
 		http.Error(w, "Unable to load index.html", http.StatusInternalServerError)
@@ -56,3 +59,36 @@ func brandHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpl.Execute(w, nil)
 }
+
+func serviceHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("service.html")
+	if err != nil {
+		http.Error(w, "Unable to load service.html", http.StatusInternalServerError)
+		return
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+
+func bookingHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("booking.html")
+	if err != nil {
+		http.Error(w, "Unable to load booking.html", http.StatusInternalServerError)
+		return
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func reviewHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("review.html")
+	if err != nil {
+		http.Error(w, "Unable to load review.html", http.StatusInternalServerError)
+		return
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+
