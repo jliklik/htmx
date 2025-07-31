@@ -6,9 +6,13 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
 	<style>
 		.font-permanent-marker {
 			font-family: "Permanent Marker"
+		}
+		.font-inter {
+			font-family: "Inter"
 		}
 		.text-outline {
 			-webkit-text-stroke: 1px white;
@@ -17,16 +21,19 @@
 </head>
 <body>
 	<div class="flex h-24">
-		<img src='/static/bike_shop.jpg' class="flex flex-1 object-cover">
-  	<img src='/static/sunset3.drawio.png' class="w-[5%] object-cover">
+	  <!--	<img src='/static/bike_shop.jpg' class="flex flex-1 object-cover"> -->
+  	<div class="flex flex-1 font-inter text-4xl font-bold px-10 items-center text-orange-200 bg-gradient-to-l from-slate-700 to-slate-900">Sunset Bikes</div>
+		<img src='/static/sunset3.drawio.png' class="w-[5%] object-cover">
 	</div>
+	<div class="bg-gradient-to-r from-orange-600 to-slate-700 w-full h-1"></div>
 	<div class="flex flex-row bg-slate-800">
-		<div hx-get="/home-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Home</div>
-		<div hx-get="/brand-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Brands</div>
-		<div hx-get="/service-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Service & Rates</div>
-		<div hx-get="/booking-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Book a Service</div>
-		<div hx-get="/review-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mx-2 px-2 w-32">Reviews</div>
+		<div hx-get="/home-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mr-2 px-2 w-32">Home</div>
+		<div hx-get="/brand-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mr-2 px-2 w-32">Brands</div>
+		<div hx-get="/service-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mr-2 px-2 w-32">Service & Rates</div>
+		<div hx-get="/booking-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mr-2 px-2 w-32">Book a Service</div>
+		<div hx-get="/review-content" hx-target="#content" hx-swap="outerHTML" class="bg-gradient-to-r from-orange-500 to-orange-400 mr-2 px-2 w-32">Reviews</div>
 	</div>
+	<div class="bg-gradient-to-r from-orange-600 to-slate-700 w-full h-1"></div>
 </body>
 <div id="content">
 	<p>Home page</p>
