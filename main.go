@@ -5,22 +5,31 @@ import (
   "net/http"
 	"log"
 	"html/template"
+	"sync"
 )
 
+type Server struct {
+	counter int
+	mu      sync.Mutex
+}
+
 func main() {
+
+	s := &Server{}
 	fmt.Println("Starting server...")
 
 	fs := http.FileServer(http.Dir("assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	// define callbacks
-	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/", s.indexHandler)
 
-	http.HandleFunc("/home-content", homeHandler)
-	http.HandleFunc("/brand-content", brandHandler)
-	http.HandleFunc("/service-content", serviceHandler)
-	http.HandleFunc("/booking-content", bookingHandler)
-	http.HandleFunc("/review-content", reviewHandler)
+	http.HandleFunc("/home-content", s.homeHandler)
+	http.HandleFunc("/brand-content", s.brandHandler)
+	http.HandleFunc("/service-content", s.serviceHandler)
+	http.HandleFunc("/booking-content", s.bookingHandler)
+	http.HandleFunc("/review-content", s.reviewHandler)
+	http.HandleFunc("/slide", s.homeSlideHandler)
 
 	// then listen and serve
 	err := http.ListenAndServe(":8080", nil)
@@ -30,7 +39,7 @@ func main() {
 }
 
 // See https://pkg.go.dev/net/http#example-HandleFunc for examples
-func indexHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) indexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("index.html")
 	if err != nil {
 		http.Error(w, "Unable to load index.html", http.StatusInternalServerError)
@@ -40,7 +49,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) homeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("home.html")
 	if err != nil {
 		http.Error(w, "Unable to load home.html", http.StatusInternalServerError)
@@ -50,7 +59,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func brandHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) brandHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("brand.html")
 	if err != nil {
 		http.Error(w, "Unable to load brand.html", http.StatusInternalServerError)
@@ -60,7 +69,7 @@ func brandHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func serviceHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) serviceHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("service.html")
 	if err != nil {
 		http.Error(w, "Unable to load service.html", http.StatusInternalServerError)
@@ -71,7 +80,7 @@ func serviceHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func bookingHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) bookingHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("booking.html")
 	if err != nil {
 		http.Error(w, "Unable to load booking.html", http.StatusInternalServerError)
@@ -81,7 +90,7 @@ func bookingHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func reviewHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) reviewHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("review.html")
 	if err != nil {
 		http.Error(w, "Unable to load review.html", http.StatusInternalServerError)
@@ -91,4 +100,9 @@ func reviewHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-
+func (s *Server) homeSlideHandler(w http.ResponseWriter, r *http.Request) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.counter++
+	fmt.Fprintf(w, "<p>%d</p>", s.counter) 
+}
