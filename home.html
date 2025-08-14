@@ -4,10 +4,10 @@
 }
 </style>
 
-<div id="content" class="flex flex-col flex-1 border-2 border-black">
-	<img src='/static/look_cycle.jpg' class="w-full h-64 object-cover">
-	<div class="flex flex-1">
-		<div class="flex flex-col flex-1">
+<div id="content" class="flex flex-col h-full border-2 border-black">
+	<img src='/static/look_cycle.jpg' class="w-full h-[20%] object-cover">
+	<div class="flex h-[80%] border-2 border-orange-400">
+		<div class="flex flex-col flex-1 overflow-hidden border-2 border-black">
 	  	<div class="font-inter font-bold text-5xl bg-red-200 text-black py-10 px-20">
 				<p class="mt-2">Welcome to Sunset Bikes!</p>
 			</div>
@@ -20,7 +20,7 @@
 				<p class="mt-2 font-bold">Location:</p><p>Moberly Elementary School, Room 310</p>
 			</div>
 		</div>
-		<div id="home-slide" class="smooth flex flex-col flex-1 border-2 border-black" hx-get="/slide" hx-swap="innerHTML" hx-trigger="every 1s" hx-target="#home-slide">
+		<div id="home-slide" class="smooth w-1/2 overflow-hidden flex flex-col flex-1 border-2 border-black" hx-get="/slide" hx-swap="innerHTML" hx-trigger="every 1s" hx-target="#home-slide">
 			Slideshow here
 		</div>
 	</div>

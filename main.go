@@ -104,5 +104,8 @@ func (s *Server) homeSlideHandler(w http.ResponseWriter, r *http.Request) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.counter++
-	fmt.Fprintf(w, "<p>%d</p>", s.counter) 
+	if (s.counter >= 3) {
+		s.counter = 0
+	}
+	fmt.Fprintf(w, "<img src='/static/shop_%d.jpg' class=\"w-full h-full object-cover\">", s.counter) 
 }
