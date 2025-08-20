@@ -107,5 +107,9 @@ func (s *Server) homeSlideHandler(w http.ResponseWriter, r *http.Request) {
 	if (s.counter >= 3) {
 		s.counter = 0
 	}
-	fmt.Fprintf(w, "<img src='/static/shop_%d.jpg' class=\"w-full h-full object-cover\">", s.counter) 
+	fmt.Fprintf(w,
+	  `<div class="w-full h-full opacity-0 transition-opacity duration-500 ease-in">
+	    <img src='/static/shop_%d.jpg' class="object-cover">
+	  </div>"`, 
+	 s.counter)
 }

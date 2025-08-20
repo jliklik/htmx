@@ -1,8 +1,44 @@
-<style>
-.smooth {
-	transition: all 1s ease-in;
-}
-</style>
+<script>
+//	document.body.addEventListener("htmx:beforeSwap", function(e) {
+//    let img = e.detail.target.querySelector("img");
+//    
+//		if (img) {
+//      console.log("img found 1");
+//			console.log(img.src);
+//			void img.offsetWidth;
+//      img.classList.remove("opacity-100");
+//      img.classList.add("opacity-0");
+//		} else {
+//		  console.log("no img found");
+//		}
+//	});
+
+	document.body.addEventListener("htmx:afterSwap", function(e) {
+    let img = e.detail.target.querySelector("img");
+    
+		if (!img) {
+	    return;
+		}
+
+		if (img.complete) {
+			requestAnimationFrame(() => {
+				img.classList.remove("opacity-0");
+				img.classList.add("opacity-100");
+			});
+      console.log("img found 2");
+//			console.log(img.src);
+//			void img.offsetWidth;
+//      img.classList.remove("opacity-0");
+//      img.classList.add("opacity-100");
+		} else {
+				img.onload = () => {
+        	img.classList.remove("opacity-0");
+					img.classList.add("opacity-100");
+				}
+//		  console.log("no img found");
+		}
+	});
+</script>
 
 <div id="content" class="flex flex-col h-full border-2 border-black">
 	<img src='/static/look_cycle.jpg' class="w-full h-[20%] object-cover">
@@ -20,7 +56,7 @@
 				<p class="mt-2 font-bold">Location:</p><p>Moberly Elementary School, Room 310</p>
 			</div>
 		</div>
-		<div id="home-slide" class="smooth w-1/2 overflow-hidden flex flex-col flex-1 border-2 border-black" hx-get="/slide" hx-swap="innerHTML" hx-trigger="every 1s" hx-target="#home-slide">
+		<div id="home-slide" class="w-1/2 overflow-hidden flex flex-col flex-1 border-2 border-black" hx-get="/slide" hx-swap="innerHTML" hx-trigger="every 2s" hx-target="#home-slide">
 			Slideshow here
 		</div>
 	</div>
