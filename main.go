@@ -108,8 +108,9 @@ func (s *Server) homeSlideHandler(w http.ResponseWriter, r *http.Request) {
 		s.counter = 0
 	}
 	fmt.Fprintf(w,
-	  `<div class="w-full h-full opacity-0 transition-opacity duration-500 ease-in">
-	    <img src='/static/shop_%d.jpg' class="object-cover">
-	  </div>"`, 
+	  `<img 
+			src='/static/shop_%d.jpg' 
+			class="w-full h-full opacity-0 transition-opacity duration-1000 ease-in object-cover"
+		>"`, 
 	 s.counter)
 }
