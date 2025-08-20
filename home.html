@@ -1,17 +1,17 @@
 <script>
-//	document.body.addEventListener("htmx:beforeSwap", function(e) {
-//    let img = e.detail.target.querySelector("img");
-//    
-//		if (img) {
-//      console.log("img found 1");
-//			console.log(img.src);
-//			void img.offsetWidth;
-//      img.classList.remove("opacity-100");
-//      img.classList.add("opacity-0");
-//		} else {
-//		  console.log("no img found");
-//		}
-//	});
+	document.body.addEventListener("htmx:beforeSwap", function(e) {
+    let img = e.detail.target.querySelector("img");
+    
+		if (img) {
+      console.log("img found 1");
+			console.log(img.src);
+			void img.offsetWidth;
+      img.classList.remove("opacity-100");
+      img.classList.add("opacity-0");
+		} else {
+		  console.log("no img found");
+		}
+	});
 
 	document.body.addEventListener("htmx:afterSwap", function(e) {
     let img = e.detail.target.querySelector("img");
@@ -20,23 +20,23 @@
 	    return;
 		}
 
-		if (img.complete) {
-			requestAnimationFrame(() => {
-				img.classList.remove("opacity-0");
-				img.classList.add("opacity-100");
-			});
-      console.log("img found 2");
+//		if (img.complete) {
+//			requestAnimationFrame(() => {
+//				img.classList.remove("opacity-0");
+//				img.classList.add("opacity-100");
+//			});
+    console.log("img found 2");
 //			console.log(img.src);
-//			void img.offsetWidth;
-//      img.classList.remove("opacity-0");
-//      img.classList.add("opacity-100");
-		} else {
-				img.onload = () => {
-        	img.classList.remove("opacity-0");
-					img.classList.add("opacity-100");
-				}
+		void img.offsetWidth;
+    img.classList.remove("opacity-0");
+    img.classList.add("opacity-100");
+//	} else {
+//				img.onload = () => {
+//       	img.classList.remove("opacity-0");
+//				img.classList.add("opacity-100");
+//			}
 //		  console.log("no img found");
-		}
+//		}
 	});
 </script>
 
