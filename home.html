@@ -1,33 +1,21 @@
 <!-- animations: refer to https://htmx.org/examples/animations/ -->
 
- <script>
-	document.body.addEventListener("htmx:beforeSwap", function(e) {
-    let img = e.detail.target.querySelector("img");
-    
-		if (img) {
-      console.log("img found 1");
-			console.log(img.src);
-			void img.offsetWidth;
-      img.classList.remove("opacity-100");
-      img.classList.add("opacity-0");
-		} else {
-		  console.log("no img found");
-		}
-	});
+<style>
 
-	document.body.addEventListener("htmx:afterSwap", function(e) {
-    let img = e.detail.target.querySelector("img");
-    
-		if (!img) {
-	    return;
-		}
+.slide-fade {
+	opacity: 1 ;
+	transition: opacity 1s ease-in-out;
+}
 
-    console.log("img found 2");
-		void img.offsetWidth;
-    img.classList.remove("opacity-0");
-    img.classList.add("opacity-100");
-	});
-</script>
+.slide-fade.htmx-added {
+	opacity: 0;
+}
+
+.slide-fade.htmx-swapping {
+	opacity: 0;
+}
+
+</style>
 
 <div id="content" class="flex flex-col h-full border-2 border-black">
 	<img src='/static/look_cycle.jpg' class="w-full h-[20%] object-cover">
@@ -45,7 +33,7 @@
 				<p class="mt-2 font-bold">Location:</p><p>Moberly Elementary School, Room 310</p>
 			</div>
 		</div>
-		<div id="home-slide" class="overflow-hidden flex flex-col flex-1 bg-black" hx-get="/slide" hx-swap="innerHTML swap:1s" hx-trigger="every 3s" hx-target="#home-slide">
+		<div id="home-slide" class="slide-fade overflow-hidden flex flex-col flex-1 bg-black" hx-get="/slide" hx-swap="outerHTML swap:1s settle:1s" hx-trigger="every 3s" hx-target="#home-slide">
 			Slideshow here
 		</div>
 	</div>
